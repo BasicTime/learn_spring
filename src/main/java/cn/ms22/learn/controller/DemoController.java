@@ -18,7 +18,14 @@ public class DemoController {
     }
 
     @RequestMapping("/accessDB")
-    public String accessDB(){
-        return dbservice.accessH2ReadInfo();
+    public String accessDB() {
+        return dbservice.accessH2Info();
     }
+
+    @RequestMapping("/accessDBread")
+    public String accessDBread() {
+        return dbservice.readH2Info();
+    }
+
+
 }
