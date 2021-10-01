@@ -27,5 +27,9 @@ public class DemoController {
         return dbservice.readH2Info();
     }
 
+    @RequestMapping("/transaction")
+    public String transactionInfo() {
+        return dbservice.transactionInfo();
+    }
 
 }

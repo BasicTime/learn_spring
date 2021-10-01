@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -27,6 +28,17 @@ public class JdbcTemplateDao {
         List<String> rs = jdbcTemplate.queryForList("select bar FROM foo", String.class);
         StringBuilder stringBuilder = new StringBuilder();
         rs.forEach(s -> stringBuilder.append(s));
+
         return stringBuilder.toString();
+    }
+
+    public void inputAmsg(String s) throws SQLException {
+        jdbcTemplate.update("insert into foo(bar) values (?)", s);
+        throw new SQLException("");
+    }
+
+    public Long getCountFromTable(String foo) {
+        Long aLong = jdbcTemplate.queryForObject("select count(1) from ?", Long.class, foo);
+        return aLong;
     }
 }
